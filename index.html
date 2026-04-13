@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Vacation Club | Private Collection</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D08A;
+    --gold-dark: #8B6914;
+    --cream: #F8F4EE;
+    --deep: #0D0A06;
+    --charcoal: #1C1812;
+    --warm-gray: #6B6459;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--deep);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* LANGUAGE TOGGLE */
+  .lang-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 48px;
+    background: rgba(13,10,6,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .lang-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .lang-btn {
+    padding: 8px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--warm-gray);
+    transition: all 0.3s;
+    text-transform: uppercase;
+  }
+
+  .lang-btn.active {
+    background: var(--gold);
+    color: var(--deep);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      linear-gradient(135deg, rgba(13,10,6,0.85) 0%, rgba(13,10,6,0.4) 50%, rgba(13,10,6,0.75) 100%),
+      url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1800&q=80') center/cover no-repeat;
+    animation: slowZoom 20s ease-in-out infinite alternate;
+  }
+
+  @keyframes slowZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.04); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    padding: 120px 80px 80px;
+    animation: fadeUp 1.2s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(44px, 5.5vw, 72px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(248,244,238,0.7);
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+
+  .hero-desc {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: rgba(248,244,238,0.75);
+    max-width: 520px;
+    margin-bottom: 48px;
+    letter-spacing: 0.3px;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    padding: 16px 40px;
+    background: var(--gold);
+    color: var(--deep);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(201,168,76,0.3);
+  }
+
+  .btn-ghost {
+    padding: 16px 40px;
+    background: transparent;
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 400;
+    text-transform: uppercase;
+    border: 1px solid rgba(248,244,238,0.35);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--charcoal);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 36px 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 0 24px;
+    border-right: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+  }
+
+  /* BENEFITS SECTION */
+  .section {
+    padding: 100px 80px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+
+  .section-eyebrow {
+    font-size: 9px;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .section-eyebrow::before, .section-eyebrow::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: rgba(201,168,76,0.4);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 54px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .section-title em { font-style: italic; color: var(--gold-light); }
+
+  /* BENEFITS GRID */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(201,168,76,0.1);
+  }
+
+  .benefit-card {
+    background: var(--charcoal);
+    padding: 52px 44px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+  }
+
+  .benefit-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.5s ease;
+  }
+
+  .benefit-card:hover::before { width: 100%; }
+  .benefit-card:hover { background: #201C15; }
+
+  .benefit-icon {
+    font-size: 32px;
+    margin-bottom: 28px;
+    display: block;
+  }
+
+  .benefit-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .benefit-desc {
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--warm-gray);
+    font-weight: 300;
+  }
+
+  /* DESTINATIONS */
+  .destinations {
+    background: var(--cream);
+    color: var(--deep);
+    padding: 100px 80px;
+  }
+
+  .destinations .section-eyebrow { color: var(--gold-dark); }
+  .destinations .section-title { color: var(--charcoal); }
+
+  .dest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 220px);
+    gap: 8px;
+  }
+
+  .dest-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .dest-card:first-child {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+  }
+
+  .dest-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+  }
+
+  .dest-card:hover .dest-img { transform: scale(1.06); }
+
+  .dest-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13,10,6,0.85) 0%, transparent 55%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+  }
+
+  .dest-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--white);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .dest-country {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* LEAD FORM */
+  .testimonial-carousel {
+    position: relative;
+    max-width: 820px;
+    margin: 0 auto 40px;
+    min-height: 240px;
+  }
+  .tcard { display: none; animation: fadeIn 0.5s ease; text-align: center; }
+  .tcard.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .tcard-stars { color: var(--gold); font-size: 18px; letter-spacing: 4px; margin-bottom: 28px; }
+  .tcard-dots { display: flex; justify-content: center; gap: 10px; margin-bottom: 24px; }
+  .tdot { width: 6px; height: 6px; border-radius: 50%; background: rgba(201,168,76,0.25); cursor: pointer; transition: all 0.3s; }
+  .tdot.active { background: var(--gold); transform: scale(1.3); }
+  .tcard-nav { display: flex; justify-content: center; gap: 16px; }
+  .tnav-btn { background: transparent; border: 1px solid rgba(201,168,76,0.35); color: var(--gold); width: 44px; height: 44px; font-size: 18px; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
+  .tnav-btn:hover { background: var(--gold); color: var(--deep); }
+
+  /* FORM */
+  .form-section {
+    background: var(--charcoal);
+    padding: 100px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-section::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .form-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .form-info h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .form-info h2 em { font-style: italic; color: var(--gold-light); }
+
+  .form-info p {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--warm-gray);
+    margin-bottom: 40px;
+  }
+
+  .trust-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    color: rgba(248,244,238,0.7);
+    letter-spacing: 0.3px;
+  }
+
+  .trust-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .lead-form {
+    background: rgba(13,10,6,0.6);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 52px;
+  }
+
+  .form-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .form-subtitle {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--warm-gray);
+    margin-bottom: 36px;
+    text-transform: uppercase;
+  }
+
+  .field-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .field-full { grid-column: 1 / -1; }
+
+  .field label {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+  }
+
+  .field input, .field select, .field textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--cream);
+    padding: 14px 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 100%;
+    -webkit-appearance: none;
+  }
+
+  .field input::placeholder, .field textarea::placeholder { color: rgba(107,100,89,0.6); }
+
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.03);
+  }
+
+  .field select option { background: var(--charcoal); color: var(--cream); }
+
+  .field textarea { resize: vertical; min-height: 90px; }
+
+  .submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: var(--gold);
+    color: var(--deep);
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 8px;
+  }
+
+  .submit-btn:hover {
+    background: var(--gold-light);
+    box-shadow: 0 8px 32px rgba(201,168,76,0.3);
+  }
+
+  .form-note {
+    font-size: 10px;
+    color: rgba(107,100,89,0.7);
+    text-align: center;
+    margin-top: 16px;
+    line-height: 1.6;
+  }
+
+  /* TESTIMONIAL */
+  .testimonial-section {
+    padding: 100px 80px;
+    text-align: center;
+    background: var(--deep);
+  }
+
+  .testimonial-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--white);
+    max-width: 800px;
+    margin: 0 auto 32px;
+    line-height: 1.5;
+  }
+
+  .testimonial-author {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .gold-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 32px auto;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 32px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--gold);
+  }
+
+  .footer-note {
+    font-size: 10px;
+    color: var(--warm-gray);
+    letter-spacing: 1px;
+  }
+
+  /* SUCCESS STATE */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .success-msg.visible { display: block; }
+
+  .success-icon { font-size: 48px; margin-bottom: 16px; }
+
+  .success-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .success-text {
+    font-size: 13px;
+    color: var(--warm-gray);
+    line-height: 1.8;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .lang-bar { padding: 14px 24px; }
+    .hero-content { padding: 100px 24px 60px; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 36px 24px; }
+    .stat-item:nth-child(2) { border-right: none; }
+    .section { padding: 72px 24px; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .destinations { padding: 72px 24px; }
+    .dest-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+    .dest-card:first-child { grid-row: auto; grid-column: 1 / -1; height: 220px; }
+    .dest-card { height: 160px; }
+    .form-section { padding: 72px 24px; }
+    .form-layout { grid-template-columns: 1fr; gap: 48px; }
+    .lead-form { padding: 32px 24px; }
+    .field-group { grid-template-columns: 1fr; }
+    .testimonial-section { padding: 72px 24px; }
+    footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+
+  /* HIDDEN language classes */
+  [data-vi] { display: none; }
+  body.vi [data-en] { display: none; }
+  body.vi [data-vi] { display: block; }
+  body.vi span[data-vi] { display: inline; }
+  body.vi span[data-en] { display: none; }
+</style>
+</head>
+<body class="en">
+
+<!-- LANGUAGE BAR -->
+<nav class="lang-bar">
+  <div class="lang-logo">World Vacation Club</div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+    <button class="lang-btn" onclick="setLang('vi')" id="btn-vi">VI</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span data-en>Exclusive Private Collection</span>
+      <span data-vi>Bộ Sưu Tập Riêng Tư Độc Quyền</span>
+    </div>
+    <h1>
+      <span data-en>Own the World's<br><em>Finest Moments</em></span>
+      <span data-vi>Sở Hữu Những<br><em>Khoảnh Khắc Đỉnh Cao</em></span>
+    </h1>
+    <p class="hero-sub">
+      <span data-en>World Vacation Club — Where Luxury Has No Limits</span>
+      <span data-vi>World Vacation Club — Nơi Đẳng Cấp Không Có Giới Hạn</span>
+    </p>
+    <p class="hero-desc">
+      <span data-en>Join an elite community of discerning travelers with access to 90+ world-class resort destinations. Villa residences, five-star amenities, and the most coveted addresses on earth — exclusively yours.</span>
+      <span data-vi>Gia nhập cộng đồng tinh hoa với quyền tiếp cận hơn 90 khu nghỉ dưỡng đẳng cấp thế giới. Biệt thự sang trọng, tiện nghi 5 sao, và những địa chỉ được thèm muốn nhất trái đất — hoàn toàn là của bạn.</span>
+    </p>
+    <div class="cta-group">
+      <a href="#lead-form" class="btn-primary">
+        <span data-en>Request Private Consultation</span>
+        <span data-vi>Yêu Cầu Tư Vấn Riêng</span>
+      </a>
+      <a href="#destinations" class="btn-ghost">
+        <span data-en>Explore Destinations</span>
+        <span data-vi>Khám Phá Điểm Đến</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-number">90+</div>
+    <div class="stat-label">
+      <span data-en>Resort Destinations</span>
+      <span data-vi>Khu Nghỉ Dưỡng</span>
+    </div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">25+</div>
+    <div class="stat-label">
+      <span data-en>Countries Worldwide</span>
+      <span data-vi>Quốc Gia Trên Toàn Cầu</span>
+    </div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">700K+</div>
+    <div class="stat-label">
+      <span data-en>Owner Families</span>
+      <span data-vi>Gia Đình Chủ Sở Hữu</span>
+    </div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">45+</div>
+    <div class="stat-label">
+      <span data-en>Years of Excellence</span>
+      <span data-vi>Năm Xuất Sắc</span>
+    </div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<section class="section" style="background: var(--deep);">
+  <div class="section-header">
+    <div class="section-eyebrow">
+      <span data-en>Why Ownership</span>
+      <span data-vi>Tại Sao Sở Hữu</span>
+    </div>
+    <h2 class="section-title">
+      <span data-en>A Life Beyond <em>Ordinary Travel</em></span>
+      <span data-vi>Cuộc Sống Vượt Ra <em>Ngoài Du Lịch Thông Thường</em></span>
+    </h2>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <span class="benefit-icon">🏛️</span>
+      <h3 class="benefit-title">
+        <span data-en>Luxury Villa Residences</span>
+        <span data-vi>Biệt Thự Sang Trọng</span>
+      </h3>
+      <p class="benefit-desc">
+        <span data-en>Spacious villas with full kitchens, separate bedrooms, and private terraces. Space and comfort that hotels simply cannot match for families and executives.</span>
+        <span data-vi>Biệt thự rộng rãi với bếp đầy đủ, phòng ngủ riêng biệt, và sân thượng riêng tư. Không gian và sự thoải mái mà khách sạn đơn giản không thể sánh kịp.</span>
+      </p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🌏</span>
+      <h3 class="benefit-title">
+        <span data-en>Exchange Worldwide</span>
+        <span data-vi>Trao Đổi Toàn Cầu</span>
+      </h3>
+      <p class="benefit-desc">
+        <span data-en>Your ownership opens doors across all World Vacation Club resorts globally. Bali, Maldives, Hawaii, Paris — the world is your private estate.</span>
+        <span data-vi>Quyền sở hữu của bạn mở ra cánh cửa đến tất cả khu nghỉ dưỡng World Vacation Club trên toàn cầu. Bali, Maldives, Hawaii, Paris — thế giới là tài sản riêng của bạn.</span>
+      </p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">💎</span>
+      <h3 class="benefit-title">
+        <span data-en>World Vacation Points</span>
+        <span data-vi>Điểm World Vacation</span>
+      </h3>
+      <p class="benefit-desc">
+        <span data-en>Earn and redeem across 8,000+ luxury properties worldwide. Your vacation ownership keeps rewarding you every single time you travel.</span>
+        <span data-vi>Tích lũy và đổi điểm tại hơn 8,000 bất động sản sang trọng trên toàn thế giới. Quyền sở hữu kỳ nghỉ của bạn tiếp tục mang lại lợi ích mỗi lần bạn đi du lịch.</span>
+      </p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">👨‍👩‍👧‍👦</span>
+      <h3 class="benefit-title">
+        <span data-en>Generational Legacy</span>
+        <span data-vi>Di Sản Thế Hệ</span>
+      </h3>
+      <p class="benefit-desc">
+        <span data-en>Transfer ownership to your children and grandchildren. Create a tradition of extraordinary family experiences that outlives you — the ultimate gift.</span>
+        <span data-vi>Chuyển quyền sở hữu cho con cái và cháu chắt của bạn. Tạo ra truyền thống về những trải nghiệm gia đình phi thường — món quà tối thượng.</span>
+      </p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">🛎️</span>
+      <h3 class="benefit-title">
+        <span data-en>White Glove Service</span>
+        <span data-vi>Dịch Vụ Đẳng Cấp Cao</span>
+      </h3>
+      <p class="benefit-desc">
+        <span data-en>Personal concierge, housekeeping, and resort services. Every detail attended to so you can focus on what matters — enjoying life to the fullest.</span>
+        <span data-vi>Quản gia cá nhân, dọn phòng và dịch vụ khu nghỉ dưỡng. Mọi chi tiết được chăm sóc để bạn tập trung vào điều quan trọng — tận hưởng cuộc sống trọn vẹn nhất.</span>
+      </p>
+    </div>
+    <div class="benefit-card">
+      <span class="benefit-icon">📈</span>
+      <h3 class="benefit-title">
+        <span data-en>Flexible Ownership Options</span>
+        <span data-vi>Tùy Chọn Sở Hữu Linh Hoạt</span>
+      </h3>
+      <p class="benefit-desc">
+        <span data-en>Point-based system lets you choose duration, villa size, and destination annually. Maximum flexibility tailored to your evolving lifestyle and travel needs.</span>
+        <span data-vi>Hệ thống dựa trên điểm cho phép bạn chọn thời gian, quy mô biệt thự và điểm đến hàng năm. Tính linh hoạt tối đa phù hợp với lối sống và nhu cầu du lịch của bạn.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section id="destinations" class="destinations">
+  <div class="section-header">
+    <div class="section-eyebrow" style="color: var(--gold-dark);">
+      <span data-en>Featured Destinations</span>
+      <span data-vi>Điểm Đến Nổi Bật</span>
+    </div>
+    <h2 class="section-title" style="color: var(--charcoal);">
+      <span data-en>Your World, <em>Curated</em></span>
+      <span data-vi>Thế Giới Của Bạn, <em>Được Tuyển Chọn</em></span>
+    </h2>
+  </div>
+  <div class="dest-grid">
+    <div class="dest-card">
+      <img class="dest-img" src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&q=80" alt="Bali">
+      <div class="dest-overlay">
+        <div class="dest-name">Bali</div>
+        <div class="dest-country"><span data-en>Indonesia</span><span data-vi>Indonesia</span></div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img class="dest-img" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80" alt="Maldives">
+      <div class="dest-overlay">
+        <div class="dest-name">Maldives</div>
+        <div class="dest-country"><span data-en>Indian Ocean</span><span data-vi>Ấn Độ Dương</span></div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img class="dest-img" src="https://images.unsplash.com/photo-1538970272646-f61fabb3a8a2?w=600&q=80" alt="Miami">
+      <div class="dest-overlay">
+        <div class="dest-name">Miami</div>
+        <div class="dest-country"><span data-en>Florida, USA</span><span data-vi>Florida, Hoa Kỳ</span></div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img class="dest-img" src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=600&q=80" alt="New York">
+      <div class="dest-overlay">
+        <div class="dest-name">New York</div>
+        <div class="dest-country"><span data-en>USA</span><span data-vi>Hoa Kỳ</span></div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img class="dest-img" src="https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=600&q=80" alt="San Francisco">
+      <div class="dest-overlay">
+        <div class="dest-name">San Francisco</div>
+        <div class="dest-country"><span data-en>California, USA</span><span data-vi>California, Hoa Kỳ</span></div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img class="dest-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Switzerland">
+      <div class="dest-overlay">
+        <div class="dest-name"><span data-en>Switzerland</span><span data-vi>Thụy Sĩ</span></div>
+        <div class="dest-country"><span data-en>Alps, Europe</span><span data-vi>Dãy Alps, Châu Âu</span></div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img class="dest-img" src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=600&q=80" alt="Prague">
+      <div class="dest-overlay">
+        <div class="dest-name">Prague</div>
+        <div class="dest-country"><span data-en>Czech Republic</span><span data-vi>Cộng Hòa Séc</span></div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img class="dest-img" src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=600&q=80" alt="Tokyo">
+      <div class="dest-overlay">
+        <div class="dest-name">Tokyo</div>
+        <div class="dest-country"><span data-en>Japan</span><span data-vi>Nhật Bản</span></div>
+      </div>
+    </div>
+    <div class="dest-card">
+      <img class="dest-img" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=80" alt="Paris">
+      <div class="dest-overlay">
+        <div class="dest-name">Paris</div>
+        <div class="dest-country"><span data-en>France</span><span data-vi>Pháp</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonial-section">
+  <div class="section-eyebrow" style="justify-content:center;display:flex;align-items:center;gap:16px;font-size:9px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-bottom:56px;">
+    <span style="display:block;width:40px;height:1px;background:rgba(201,168,76,0.4);"></span>
+    <span data-en>Voices of Our Owners</span>
+    <span data-vi>Tiếng Nói Từ Các Chủ Sở Hữu</span>
+    <span style="display:block;width:40px;height:1px;background:rgba(201,168,76,0.4);"></span>
+  </div>
+
+  <div class="testimonial-carousel">
+    <div class="tcard active">
+      <div class="tcard-stars">★★★★★</div>
+      <blockquote class="testimonial-quote">
+        <span data-en>"Joining World Vacation Club was the best lifestyle decision our family ever made. We've created memories across four continents — and we're just beginning."</span>
+        <span data-vi>"Gia nhập World Vacation Club là quyết định lối sống tốt nhất mà gia đình chúng tôi từng thực hiện. Chúng tôi đã tạo ra những kỷ niệm trên bốn châu lục — và chúng tôi mới chỉ bắt đầu."</span>
+      </blockquote>
+      <div class="testimonial-author">
+        <span data-en>— Dr. Nguyễn T.H. &amp; Family, Hanoi</span>
+        <span data-vi>— TS. Nguyễn T.H. &amp; Gia Đình, Hà Nội</span>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <blockquote class="testimonial-quote">
+        <span data-en>"As a business owner in Ho Chi Minh City, I travel constantly. Having a villa in Bali and Switzerland available to my family whenever we choose — that's true freedom. The service is impeccable every single time."</span>
+        <span data-vi>"Là một doanh nhân ở TP.HCM, tôi đi lại liên tục. Có biệt thự ở Bali và Thụy Sĩ dành cho gia đình bất cứ khi nào chúng tôi muốn — đó là tự do thực sự. Dịch vụ hoàn hảo mỗi lần."</span>
+      </blockquote>
+      <div class="testimonial-author">
+        <span data-en>— Mr. Trần V.M., CEO &amp; Entrepreneur, Ho Chi Minh City</span>
+        <span data-vi>— Ông Trần V.M., CEO &amp; Doanh Nhân, TP. Hồ Chí Minh</span>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <blockquote class="testimonial-quote">
+        <span data-en>"We gifted a membership to our daughter for her wedding. Now she and her husband take their children to New York, Miami, Tokyo every year. It's a legacy that keeps giving across generations."</span>
+        <span data-vi>"Chúng tôi tặng tư cách thành viên cho con gái nhân ngày cưới. Giờ đây cô ấy và chồng đưa các con đến New York, Miami, Tokyo hàng năm. Đó là di sản tiếp tục lan tỏa qua các thế hệ."</span>
+      </blockquote>
+      <div class="testimonial-author">
+        <span data-en>— Mrs. Lê T.B., Retired Director, Da Nang</span>
+        <span data-vi>— Bà Lê T.B., Giám Đốc Nghỉ Hưu, Đà Nẵng</span>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <blockquote class="testimonial-quote">
+        <span data-en>"I was skeptical at first. But after our first stay in a villa overlooking the Maldives lagoon, I understood immediately. This is not a hotel. This is our home — wherever we choose in the world."</span>
+        <span data-vi>"Lúc đầu tôi còn hoài nghi. Nhưng sau lần đầu ở trong biệt thự nhìn ra đầm phá Maldives, tôi hiểu ngay. Đây không phải khách sạn. Đây là ngôi nhà của chúng tôi — ở bất cứ đâu trên thế giới."</span>
+      </blockquote>
+      <div class="testimonial-author">
+        <span data-en>— Dr. Phạm Q.A. &amp; Mrs. Phạm, Cardiologist, Hanoi</span>
+        <span data-vi>— BS. Phạm Q.A. &amp; Bà Phạm, Tim Mạch Học, Hà Nội</span>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tcard-stars">★★★★★</div>
+      <blockquote class="testimonial-quote">
+        <span data-en>"The bilingual support made everything seamless for our family. From the first consultation to checking in at our Prague villa — every step was handled beautifully in both Vietnamese and English."</span>
+        <span data-vi>"Sự hỗ trợ song ngữ giúp mọi thứ trở nên liền mạch cho gia đình chúng tôi. Từ buổi tư vấn đầu tiên đến khi nhận phòng tại biệt thự Prague — mọi bước đều được xử lý hoàn hảo bằng cả tiếng Việt và tiếng Anh."</span>
+      </blockquote>
+      <div class="testimonial-author">
+        <span data-en>— Mr. Võ H.L., Real Estate Developer, Ho Chi Minh City</span>
+        <span data-vi>— Ông Võ H.L., Nhà Phát Triển Bất Động Sản, TP. Hồ Chí Minh</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tcard-dots">
+    <span class="tdot active" onclick="goTo(0)"></span>
+    <span class="tdot" onclick="goTo(1)"></span>
+    <span class="tdot" onclick="goTo(2)"></span>
+    <span class="tdot" onclick="goTo(3)"></span>
+    <span class="tdot" onclick="goTo(4)"></span>
+  </div>
+
+  <div class="tcard-nav">
+    <button class="tnav-btn" onclick="prevT()">&#8592;</button>
+    <button class="tnav-btn" onclick="nextT()">&#8594;</button>
+  </div>
+</section>
+
+<!-- LEAD FORM -->
+<section id="lead-form" class="form-section">
+  <div class="form-layout">
+    <div class="form-info">
+      <h2>
+        <span data-en>Begin Your <em>Private Journey</em></span>
+        <span data-vi>Bắt Đầu <em>Hành Trình Riêng Tư</em></span>
+      </h2>
+      <p>
+        <span data-en>Connect directly with me for a confidential, no-obligation consultation. I'll walk you through ownership options crafted for discerning investors and families seeking the finest experiences the world offers.</span>
+        <span data-vi>Kết nối trực tiếp với tôi để được tư vấn bảo mật, không ràng buộc. Tôi sẽ hướng dẫn bạn qua các lựa chọn sở hữu được thiết kế dành cho các nhà đầu tư sành điệu và gia đình tìm kiếm những trải nghiệm tốt nhất thế giới.</span>
+      </p>
+      <div class="trust-items">
+        <div class="trust-item">
+          <span class="trust-dot"></span>
+          <span data-en>Complimentary consultation — no commitment required</span>
+          <span data-vi>Tư vấn miễn phí — không cần cam kết</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-dot"></span>
+          <span data-en>Vietnamese & English bilingual support</span>
+          <span data-vi>Hỗ trợ song ngữ Việt & Anh</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-dot"></span>
+          <span data-en>Exclusive incentives for qualified Vietnam clients</span>
+          <span data-vi>Ưu đãi độc quyền cho khách hàng Việt Nam đủ điều kiện</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-dot"></span>
+          <span data-en>Flexible payment options in USD or VND</span>
+          <span data-vi>Tùy chọn thanh toán linh hoạt bằng USD hoặc VND</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-dot"></span>
+          <span data-en>Response within 24 hours — your time is valued</span>
+          <span data-vi>Phản hồi trong vòng 24 giờ — thời gian của bạn được trân trọng</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lead-form">
+      <div id="form-container">
+        <h3 class="form-title">
+          <span data-en>Request Consultation</span>
+          <span data-vi>Yêu Cầu Tư Vấn</span>
+        </h3>
+        <p class="form-subtitle">
+          <span data-en>Confidential & No Obligation</span>
+          <span data-vi>Bảo Mật & Không Ràng Buộc</span>
+        </p>
+
+        <div class="field-group">
+          <div class="field">
+            <label>
+              <span data-en>First Name</span>
+              <span data-vi>Tên</span>
+            </label>
+            <input type="text" id="fname" placeholder="James / Minh">
+          </div>
+          <div class="field">
+            <label>
+              <span data-en>Last Name</span>
+              <span data-vi>Họ</span>
+            </label>
+            <input type="text" id="lname" placeholder="Smith / Nguyễn">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="your@email.com">
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-en>Phone / WhatsApp / Zalo</span>
+            <span data-vi>Điện Thoại / WhatsApp / Zalo</span>
+          </label>
+          <input type="tel" id="phone" placeholder="+84 or +1...">
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-en>City / Country</span>
+            <span data-vi>Thành Phố / Quốc Gia</span>
+          </label>
+          <input type="text" id="city" placeholder="Ho Chi Minh City / Hanoi / Da Nang...">
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-en>Interest Level</span>
+            <span data-vi>Mức Độ Quan Tâm</span>
+          </label>
+          <select id="interest">
+            <option value="">
+              <span data-en>Select...</span>
+            </option>
+            <option value="info">
+              <span data-en>Just gathering information</span>
+            </option>
+            <option value="serious">
+              <span data-en>Seriously considering ownership</span>
+            </option>
+            <option value="ready">
+              <span data-en>Ready to invest — want details</span>
+            </option>
+            <option value="gift">
+              <span data-en>Gifting to family</span>
+            </option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>
+            <span data-en>Message (Optional)</span>
+            <span data-vi>Tin Nhắn (Tùy Chọn)</span>
+          </label>
+          <textarea id="message" placeholder="Questions, preferred destinations, travel frequency..."></textarea>
+        </div>
+
+        <button class="submit-btn" onclick="submitForm()">
+          <span data-en>Submit My Inquiry</span>
+          <span data-vi>Gửi Yêu Cầu Của Tôi</span>
+        </button>
+
+        <p class="form-note">
+          <span data-en>Your information is 100% confidential and never shared. By submitting you agree to be contacted by a licensed World Vacation Club Sales Executive.</span>
+          <span data-vi>Thông tin của bạn được bảo mật 100% và không bao giờ được chia sẻ. Bằng cách gửi, bạn đồng ý được liên hệ bởi Giám đốc Kinh doanh World Vacation Club được cấp phép.</span>
+        </p>
+      </div>
+
+      <div class="success-msg" id="success-msg">
+        <div class="success-icon">✦</div>
+        <h3 class="success-title">
+          <span data-en>Thank You — We'll Be in Touch</span>
+          <span data-vi>Cảm Ơn Bạn — Chúng Tôi Sẽ Liên Hệ</span>
+        </h3>
+        <p class="success-text">
+          <span data-en>Your inquiry has been received. A World Vacation Club specialist will contact you within 24 hours for your private consultation.</span>
+          <span data-vi>Yêu cầu của bạn đã được nhận. Một chuyên gia World Vacation Club sẽ liên hệ với bạn trong vòng 24 giờ để tư vấn riêng tư.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">World Vacation Club</div>
+  <div class="footer-note">
+    <span data-en>© 2026 World Vacation Club. All rights reserved. Licensed Sales Executive.</span>
+    <span data-vi>© 2026 World Vacation Club. Tất cả quyền được bảo lưu. Giám đốc Kinh doanh Được Cấp Phép.</span>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.className = lang;
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
+
+    // Update select options based on language
+    const select = document.getElementById('interest');
+    if (lang === 'vi') {
+      select.options[0].text = 'Chọn...';
+      select.options[1].text = 'Chỉ thu thập thông tin';
+      select.options[2].text = 'Đang nghiêm túc xem xét sở hữu';
+      select.options[3].text = 'Sẵn sàng đầu tư — muốn biết thêm';
+      select.options[4].text = 'Tặng quà cho gia đình';
+    } else {
+      select.options[0].text = 'Select...';
+      select.options[1].text = 'Just gathering information';
+      select.options[2].text = 'Seriously considering ownership';
+      select.options[3].text = 'Ready to invest — want details';
+      select.options[4].text = 'Gifting to family';
+    }
+  }
+
+  function submitForm() {
+    const fname = document.getElementById('fname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    if (!fname || !email || !phone) {
+      alert(document.body.className === 'vi'
+        ? 'Vui lòng điền tên, email và số điện thoại.'
+        : 'Please fill in your name, email, and phone number.');
+      return;
+    }
+
+    // Hide form, show success
+    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('success-msg').classList.add('visible');
+
+    // Scroll to success
+    document.getElementById('lead-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // Testimonial carousel
+  let tCurrent = 0;
+  const tCards = document.querySelectorAll('.tcard');
+  const tDots = document.querySelectorAll('.tdot');
+
+  function goTo(n) {
+    tCards[tCurrent].classList.remove('active');
+    tDots[tCurrent].classList.remove('active');
+    tCurrent = (n + tCards.length) % tCards.length;
+    tCards[tCurrent].classList.add('active');
+    tDots[tCurrent].classList.add('active');
+  }
+
+  function nextT() { goTo(tCurrent + 1); }
+  function prevT() { goTo(tCurrent - 1); }
+
+  // Auto-advance every 6s
+  setInterval(nextT, 6000);
+
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Intersection observer for subtle reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.style.opacity = '1';
+        el.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.benefit-card, .stat-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
