@@ -219,7 +219,7 @@
       font-size: 13px;
       font-weight: 300;
       line-height: 1.9;
-      color: rgba(248,244,238,0.75);
+      color: rgba(248,244,238,0.92);
       max-width: 520px;
       margin-bottom: 48px;
       letter-spacing: 0.3px;
@@ -358,7 +358,7 @@
       margin-bottom: 16px;
       line-height: 1.3;
     }
-    .benefit-desc { font-size: 12px; line-height: 1.9; color: var(--warm-gray); font-weight: 300; }
+    .benefit-desc { font-size: 12px; line-height: 1.9; color: rgba(248,244,238,0.82); font-weight: 300; }
 
     /* ============================================================
        DESTINATIONS GRID (3x3 mosaic)
@@ -491,9 +491,9 @@
       margin-bottom: 24px;
     }
     .form-info h2 em { font-style: italic; color: var(--gold-light); }
-    .form-info p { font-size: 13px; line-height: 1.9; color: var(--warm-gray); margin-bottom: 40px; }
+    .form-info p { font-size: 13px; line-height: 1.9; color: rgba(248,244,238,0.85); margin-bottom: 40px; }
     .trust-items { display: flex; flex-direction: column; gap: 16px; }
-    .trust-item { display: flex; align-items: center; gap: 16px; font-size: 12px; color: rgba(248,244,238,0.7); }
+    .trust-item { display: flex; align-items: center; gap: 16px; font-size: 12px; color: rgba(248,244,238,0.88); }
     .trust-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
 
     .lead-form {
@@ -634,6 +634,86 @@
     .float-btn svg { flex-shrink: 0; }
 
     /* ============================================================
+       EXPLORE THE WORLD SECTION
+    ============================================================ */
+    .explore-section {
+      background: var(--deep);
+      padding: 100px 80px;
+      border-top: 1px solid rgba(201,168,76,0.1);
+    }
+    .explore-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 60px;
+    }
+    .explore-card {
+      position: relative;
+      height: 320px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+    .explore-card:first-child {
+      grid-column: 1 / 3;
+      height: 360px;
+    }
+    .explore-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+      filter: brightness(0.75);
+    }
+    .explore-card:hover .explore-img {
+      transform: scale(1.06);
+      filter: brightness(0.65);
+    }
+    .explore-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13,10,6,0.92) 0%, rgba(13,10,6,0.2) 60%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px;
+    }
+    .explore-tag {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .explore-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .explore-desc {
+      font-size: 11px;
+      color: rgba(248,244,238,0.8);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+    .explore-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: gap 0.3s;
+    }
+    .explore-card:hover .explore-arrow { gap: 12px; }
+
+    /* ============================================================
        RESPONSIVE — mobile breakpoint
     ============================================================ */
     @media (max-width: 900px) {
@@ -648,6 +728,10 @@
       .dest-card:first-child { grid-row: auto; grid-column: 1 / -1; height: 220px; }
       .dest-card         { height: 160px; }
       .testimonial-section { padding: 72px 24px; }
+      .explore-section      { padding: 72px 24px; }
+      .explore-grid         { grid-template-columns: 1fr; }
+      .explore-card         { height: 260px; }
+      .explore-card:first-child { grid-column: auto; height: 300px; }
       .form-section      { padding: 72px 24px; }
       .form-layout       { grid-template-columns: 1fr; gap: 48px; }
       .lead-form         { padding: 32px 24px; }
@@ -1068,6 +1152,220 @@
     <button class="tnav-btn" onclick="nextT()" aria-label="Next">&#8594;</button>
   </div>
 
+</section>
+
+<!-- ============================================================
+  EXPLORE THE WORLD SECTION
+  Inspired by Abound by Marriott Vacations exchange categories
+  All photos are royalty-free from Unsplash — no brand logos
+============================================================ -->
+<section class="explore-section">
+  <div class="section-header">
+    <div class="section-eyebrow">
+      <span data-en>What Awaits You</span>
+      <span data-vi>Những Gì Đang Chờ Đón Bạn</span>
+    </div>
+    <h2 class="section-title">
+      <span data-en>Explore <em>the World</em></span>
+      <span data-vi>Khám Phá <em>Thế Giới</em></span>
+    </h2>
+  </div>
+
+  <div class="explore-grid">
+
+    <!-- 1. Cruises — wide card -->
+    <div class="explore-card">
+      <img class="explore-img" src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=900&q=80" alt="Luxury Cruise" loading="lazy" />
+      <div class="explore-overlay">
+        <div class="explore-tag">
+          <span data-en>By Sea</span>
+          <span data-vi>Trên Biển</span>
+        </div>
+        <div class="explore-title">
+          <span data-en>World-Class Cruises</span>
+          <span data-vi>Du Thuyền Đẳng Cấp Thế Giới</span>
+        </div>
+        <div class="explore-desc">
+          <span data-en>Sail the Mediterranean, Caribbean, and beyond aboard ultra-luxury vessels with white-glove service at every port of call.</span>
+          <span data-vi>Dong thuyền trên Địa Trung Hải, Caribe và xa hơn trên những con tàu siêu sang với dịch vụ đẳng cấp tại mỗi cảng ghé thăm.</span>
+        </div>
+        <span class="explore-arrow">
+          <span data-en>Learn More</span>
+          <span data-vi>Tìm Hiểu Thêm</span>
+          →
+        </span>
+      </div>
+    </div>
+
+    <!-- 2. Safari -->
+    <div class="explore-card">
+      <img class="explore-img" src="https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&q=80" alt="African Safari" loading="lazy" />
+      <div class="explore-overlay">
+        <div class="explore-tag">
+          <span data-en>Wildlife</span>
+          <span data-vi>Thiên Nhiên Hoang Dã</span>
+        </div>
+        <div class="explore-title">
+          <span data-en>Private Safari</span>
+          <span data-vi>Safari Riêng Tư</span>
+        </div>
+        <div class="explore-desc">
+          <span data-en>Exclusive game drives across Africa's most breathtaking reserves. Witness the Big Five in their natural habitat.</span>
+          <span data-vi>Khám phá các khu bảo tồn tuyệt vời nhất châu Phi. Chiêm ngưỡng Ngũ Đại thú trong môi trường tự nhiên.</span>
+        </div>
+        <span class="explore-arrow">
+          <span data-en>Learn More</span>
+          <span data-vi>Tìm Hiểu Thêm</span>
+          →
+        </span>
+      </div>
+    </div>
+
+    <!-- 3. Vacation Clubs -->
+    <div class="explore-card">
+      <img class="explore-img" src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80" alt="Vacation Club Resort" loading="lazy" />
+      <div class="explore-overlay">
+        <div class="explore-tag">
+          <span data-en>Ownership</span>
+          <span data-vi>Sở Hữu</span>
+        </div>
+        <div class="explore-title">
+          <span data-en>Vacation Clubs</span>
+          <span data-vi>Câu Lạc Bộ Nghỉ Dưỡng</span>
+        </div>
+        <div class="explore-desc">
+          <span data-en>Access an exclusive network of villa resorts worldwide through your membership — flexibility without compromise.</span>
+          <span data-vi>Tiếp cận mạng lưới biệt thự nghỉ dưỡng độc quyền trên toàn thế giới thông qua tư cách thành viên của bạn.</span>
+        </div>
+        <span class="explore-arrow">
+          <span data-en>Learn More</span>
+          <span data-vi>Tìm Hiểu Thêm</span>
+          →
+        </span>
+      </div>
+    </div>
+
+    <!-- 4. Luxury Hotels -->
+    <div class="explore-card">
+      <img class="explore-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Luxury Hotel" loading="lazy" />
+      <div class="explore-overlay">
+        <div class="explore-tag">
+          <span data-en>Five Star</span>
+          <span data-vi>Năm Sao</span>
+        </div>
+        <div class="explore-title">
+          <span data-en>Luxury Hotels</span>
+          <span data-vi>Khách Sạn Sang Trọng</span>
+        </div>
+        <div class="explore-desc">
+          <span data-en>Stay in the world's finest hotels — rooftop infinity pools, Michelin-starred dining, and unparalleled city views.</span>
+          <span data-vi>Lưu trú tại những khách sạn hàng đầu thế giới — hồ bơi vô cực trên sân thượng, ẩm thực Michelin, tầm nhìn thành phố tuyệt vời.</span>
+        </div>
+        <span class="explore-arrow">
+          <span data-en>Learn More</span>
+          <span data-vi>Tìm Hiểu Thêm</span>
+          →
+        </span>
+      </div>
+    </div>
+
+    <!-- 5. Luxury Properties -->
+    <div class="explore-card">
+      <img class="explore-img" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" alt="Luxury Villa Property" loading="lazy" />
+      <div class="explore-overlay">
+        <div class="explore-tag">
+          <span data-en>Private Estates</span>
+          <span data-vi>Dinh Thự Riêng</span>
+        </div>
+        <div class="explore-title">
+          <span data-en>Luxury Properties</span>
+          <span data-vi>Bất Động Sản Sang Trọng</span>
+        </div>
+        <div class="explore-desc">
+          <span data-en>Private villas with infinity pools, personal chefs, and butler service — your own estate in the world's most coveted locations.</span>
+          <span data-vi>Biệt thự riêng với hồ bơi vô cực, đầu bếp cá nhân và quản gia — tài sản riêng của bạn tại những vị trí được thèm muốn nhất thế giới.</span>
+        </div>
+        <span class="explore-arrow">
+          <span data-en>Learn More</span>
+          <span data-vi>Tìm Hiểu Thêm</span>
+          →
+        </span>
+      </div>
+    </div>
+
+    <!-- 6. Vacation & Culinary Tours -->
+    <div class="explore-card">
+      <img class="explore-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Culinary Tour" loading="lazy" />
+      <div class="explore-overlay">
+        <div class="explore-tag">
+          <span data-en>Culture & Taste</span>
+          <span data-vi>Văn Hóa & Ẩm Thực</span>
+        </div>
+        <div class="explore-title">
+          <span data-en>Vacation & Culinary Tours</span>
+          <span data-vi>Du Lịch Văn Hóa & Ẩm Thực</span>
+        </div>
+        <div class="explore-desc">
+          <span data-en>Guided tours through Tuscany, Kyoto, and Provence — pairing world-class cuisine with immersive cultural experiences.</span>
+          <span data-vi>Tour có hướng dẫn qua Tuscany, Kyoto và Provence — kết hợp ẩm thực đẳng cấp thế giới với trải nghiệm văn hóa phong phú.</span>
+        </div>
+        <span class="explore-arrow">
+          <span data-en>Learn More</span>
+          <span data-vi>Tìm Hiểu Thêm</span>
+          →
+        </span>
+      </div>
+    </div>
+
+    <!-- 7. Interval International Resorts -->
+    <div class="explore-card">
+      <img class="explore-img" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80" alt="Resort Exchange" loading="lazy" />
+      <div class="explore-overlay">
+        <div class="explore-tag">
+          <span data-en>Global Exchange</span>
+          <span data-vi>Trao Đổi Toàn Cầu</span>
+        </div>
+        <div class="explore-title">
+          <span data-en>Interval International Resorts</span>
+          <span data-vi>Khu Nghỉ Dưỡng Quốc Tế</span>
+        </div>
+        <div class="explore-desc">
+          <span data-en>Exchange your ownership for stays at thousands of affiliated resorts across 80+ countries — endless variety, one membership.</span>
+          <span data-vi>Đổi quyền sở hữu để lưu trú tại hàng nghìn khu nghỉ dưỡng liên kết ở hơn 80 quốc gia — đa dạng vô tận, một tư cách thành viên.</span>
+        </div>
+        <span class="explore-arrow">
+          <span data-en>Learn More</span>
+          <span data-vi>Tìm Hiểu Thêm</span>
+          →
+        </span>
+      </div>
+    </div>
+
+    <!-- 8. Premier Events & More -->
+    <div class="explore-card">
+      <img class="explore-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Premier Events" loading="lazy" />
+      <div class="explore-overlay">
+        <div class="explore-tag">
+          <span data-en>VIP Access</span>
+          <span data-vi>Truy Cập VIP</span>
+        </div>
+        <div class="explore-title">
+          <span data-en>Premier Events &amp; More</span>
+          <span data-vi>Sự Kiện Cao Cấp &amp; Nhiều Hơn</span>
+        </div>
+        <div class="explore-desc">
+          <span data-en>Exclusive access to premier sporting events, concerts, galas, and airline mile rewards — ownership that rewards every day.</span>
+          <span data-vi>Quyền truy cập độc quyền vào các sự kiện thể thao, hòa nhạc, dạ tiệc và phần thưởng dặm bay — quyền sở hữu mang lại lợi ích mỗi ngày.</span>
+        </div>
+        <span class="explore-arrow">
+          <span data-en>Learn More</span>
+          <span data-vi>Tìm Hiểu Thêm</span>
+          →
+        </span>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- ============================================================
