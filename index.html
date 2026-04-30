@@ -145,8 +145,7 @@
     .lang-btn.active { background: var(--gold); color: var(--deep); }
 
     /* ============================================================
-       HERO SECTION
-       EDIT: swap the Unsplash URL below for your own hero image
+       HERO SECTION — Video Background
     ============================================================ */
     .hero {
       min-height: 100vh;
@@ -155,18 +154,27 @@
       align-items: center;
       overflow: hidden;
     }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(13,10,6,0.82) 0%, rgba(13,10,6,0.35) 55%, rgba(13,10,6,0.72) 100%);
+      z-index: 1;
+    }
+    /* Fallback bg if video doesn't load */
     .hero-bg {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(135deg, rgba(13,10,6,0.85) 0%, rgba(13,10,6,0.4) 50%, rgba(13,10,6,0.75) 100%),
-        /* EDIT: replace this URL with your preferred hero photo */
         url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1800&q=80') center/cover no-repeat;
-      animation: slowZoom 20s ease-in-out infinite alternate;
-    }
-    @keyframes slowZoom {
-      from { transform: scale(1); }
-      to   { transform: scale(1.04); }
+      z-index: 0;
     }
     .hero-content {
       position: relative;
@@ -663,16 +671,16 @@
       height: 100%;
       object-fit: cover;
       transition: transform 0.7s ease;
-      filter: brightness(0.75);
+      filter: brightness(0.88);
     }
     .explore-card:hover .explore-img {
       transform: scale(1.06);
-      filter: brightness(0.65);
+      filter: brightness(0.78);
     }
     .explore-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(13,10,6,0.92) 0%, rgba(13,10,6,0.2) 60%, transparent 100%);
+      background: linear-gradient(to top, rgba(13,10,6,0.82) 0%, rgba(13,10,6,0.1) 55%, transparent 100%);
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -714,6 +722,186 @@
     .explore-card:hover .explore-arrow { gap: 12px; }
 
     /* ============================================================
+       PRESS / AWARDS BAR
+    ============================================================ */
+    .press-bar {
+      background: rgba(13,10,6,0.95);
+      border-top: 1px solid rgba(201,168,76,0.15);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding: 20px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      overflow: hidden;
+    }
+    .press-label {
+      font-size: 8px;
+      letter-spacing: 3px;
+      color: var(--warm-gray);
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding-right: 32px;
+      border-right: 1px solid rgba(201,168,76,0.2);
+      margin-right: 32px;
+      flex-shrink: 0;
+    }
+    .press-logos {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .press-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: rgba(248,244,238,0.45);
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: color 0.3s;
+      white-space: nowrap;
+    }
+    .press-logo:hover { color: var(--gold-light); }
+    .press-dot {
+      width: 3px;
+      height: 3px;
+      background: rgba(201,168,76,0.3);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       PERSONAL ADVISOR SECTION
+    ============================================================ */
+    .advisor-section {
+      background: var(--charcoal);
+      padding: 100px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .advisor-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .advisor-layout {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    /* Photo side */
+    .advisor-photo-wrap {
+      position: relative;
+    }
+    .advisor-photo-frame {
+      position: relative;
+      width: 100%;
+      padding-bottom: 120%;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .advisor-photo-frame img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(15%);
+      transition: filter 0.5s;
+    }
+    .advisor-photo-frame:hover img { filter: grayscale(0%); }
+    .advisor-photo-badge {
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      background: var(--gold);
+      color: var(--deep);
+      padding: 16px 20px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-align: center;
+      line-height: 1.4;
+      min-width: 130px;
+    }
+    /* Text side */
+    .advisor-eyebrow {
+      font-size: 9px;
+      letter-spacing: 5px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .advisor-eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .advisor-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 52px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+    .advisor-name em { font-style: italic; color: var(--gold-light); }
+    .advisor-title {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .advisor-bio {
+      font-size: 13px;
+      line-height: 1.95;
+      color: rgba(248,244,238,0.85);
+      font-weight: 300;
+      margin-bottom: 36px;
+    }
+    .advisor-credentials {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .advisor-cred {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid rgba(201,168,76,0.15);
+      background: rgba(13,10,6,0.3);
+    }
+    .advisor-cred-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .advisor-cred-text { font-size: 11px; line-height: 1.6; color: rgba(248,244,238,0.8); }
+    .advisor-cred-text strong {
+      display: block;
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+    .advisor-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* ============================================================
        RESPONSIVE — mobile breakpoint
     ============================================================ */
     @media (max-width: 900px) {
@@ -727,6 +915,14 @@
       .dest-grid         { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
       .dest-card:first-child { grid-row: auto; grid-column: 1 / -1; height: 220px; }
       .dest-card         { height: 160px; }
+      .press-bar         { padding: 20px 24px; }
+      .press-label       { display: none; }
+      .press-logos       { gap: 20px; }
+      .advisor-section   { padding: 72px 24px; }
+      .advisor-layout    { grid-template-columns: 1fr; gap: 48px; }
+      .advisor-photo-frame { padding-bottom: 100%; }
+      .advisor-photo-badge { right: 0; }
+      .advisor-credentials { grid-template-columns: 1fr; }
       .testimonial-section { padding: 72px 24px; }
       .explore-section      { padding: 72px 24px; }
       .explore-grid         { grid-template-columns: 1fr; }
@@ -763,11 +959,27 @@
 </nav>
 
 <!-- ============================================================
-  HERO SECTION
-  EDIT: Update headline, subtitle, and description copy below
+  HERO SECTION — Cinematic Video Background
+  Video sources from Pexels (free, no attribution required)
+  EDIT: Replace video src URLs with your own resort footage if desired
 ============================================================ -->
 <section class="hero">
+  <!-- Fallback photo if video doesn't load -->
   <div class="hero-bg"></div>
+
+  <!-- Cinematic video — muted, autoplay, loops silently -->
+  <video class="hero-video"
+    autoplay muted loop playsinline
+    poster="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1800&q=80">
+    <!-- Primary: luxury resort pool/villa footage -->
+    <source src="https://videos.pexels.com/video-files/3997800/3997800-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+    <!-- Fallback: ocean resort footage -->
+    <source src="https://videos.pexels.com/video-files/1093662/1093662-uhd_2560_1440_24fps.mp4" type="video/mp4" />
+  </video>
+
+  <!-- Dark gradient overlay so text stays readable -->
+  <div class="hero-overlay"></div>
+
   <div class="hero-content">
 
     <div class="hero-eyebrow">
@@ -786,8 +998,8 @@
     </p>
 
     <p class="hero-desc">
-      <span data-en>Join an elite community of discerning travelers with access to 90+ world-class resort destinations. Villa residences, five-star amenities, and the most coveted addresses on earth — exclusively yours.</span>
-      <span data-vi>Gia nhập cộng đồng tinh hoa với quyền tiếp cận hơn 90 khu nghỉ dưỡng đẳng cấp thế giới. Biệt thự sang trọng, tiện nghi 5 sao, và những địa chỉ được thèm muốn nhất trái đất — hoàn toàn là của bạn.</span>
+      <span data-en>Join an elite community of discerning travelers with access to 100+ world-class resort destinations. Villa residences, five-star amenities, and the most coveted addresses on earth — exclusively yours.</span>
+      <span data-vi>Gia nhập cộng đồng tinh hoa với quyền tiếp cận hơn 100 khu nghỉ dưỡng đẳng cấp thế giới. Biệt thự sang trọng, tiện nghi 5 sao, và những địa chỉ được thèm muốn nhất trái đất — hoàn toàn là của bạn.</span>
     </p>
 
     <div class="cta-group">
@@ -810,32 +1022,57 @@
 ============================================================ -->
 <div class="stats-bar">
   <div class="stat-item">
-    <div class="stat-number">90+</div>
+    <div class="stat-number">100+</div>
     <div class="stat-label">
       <span data-en>Resort Destinations</span>
       <span data-vi>Khu Nghỉ Dưỡng</span>
     </div>
   </div>
   <div class="stat-item">
-    <div class="stat-number">25+</div>
+    <div class="stat-number">50+</div>
     <div class="stat-label">
       <span data-en>Countries Worldwide</span>
       <span data-vi>Quốc Gia Trên Toàn Cầu</span>
     </div>
   </div>
   <div class="stat-item">
-    <div class="stat-number">700K+</div>
+    <div class="stat-number">1MM+</div>
     <div class="stat-label">
       <span data-en>Owner Families</span>
       <span data-vi>Gia Đình Chủ Sở Hữu</span>
     </div>
   </div>
   <div class="stat-item">
-    <div class="stat-number">45+</div>
+    <div class="stat-number">100+</div>
     <div class="stat-label">
-      <span data-en>Years of Excellence</span>
-      <span data-vi>Năm Xuất Sắc</span>
+      <span data-en>Combined Years of Excellence</span>
+      <span data-vi>Năm Xuất Sắc Kết Hợp</span>
     </div>
+  </div>
+</div>
+
+<!-- ============================================================
+  PRESS / AWARDS BAR
+  Signals credibility to affluent Vietnamese clients
+  EDIT: Update publications as relevant to your market
+============================================================ -->
+<div class="press-bar">
+  <span class="press-label">
+    <span data-en>As Seen In</span>
+    <span data-vi>Được Giới Thiệu Trên</span>
+  </span>
+  <div class="press-logos">
+    <span class="press-logo">Forbes Travel</span>
+    <span class="press-dot"></span>
+    <span class="press-logo">Condé Nast Traveler</span>
+    <span class="press-dot"></span>
+    <span class="press-logo">Travel + Leisure</span>
+    <span class="press-dot"></span>
+    <span class="press-logo">Robb Report</span>
+    <span class="press-dot"></span>
+    <span class="press-logo">The Ritz Herald</span>
+    <span class="press-dot"></span>
+    <span class="press-logo">Luxury Travel Magazine</span>
   </div>
 </div>
 
@@ -1365,6 +1602,110 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ============================================================
+  PERSONAL ADVISOR SECTION
+  EDIT:
+  - Replace "advisor-photo.jpg" with your actual professional photo
+    (drag it into the world-vacation-club folder like the other images)
+  - Update bio text with your real story
+  - Update credential items with your actual background
+============================================================ -->
+<section class="advisor-section">
+  <div class="advisor-layout">
+
+    <!-- LEFT: Photo -->
+    <div class="advisor-photo-wrap">
+      <div class="advisor-photo-frame">
+        <!-- EDIT: Replace advisor-photo.jpg with your real photo filename -->
+        <img src="advisor-photo.jpg"
+             onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80'"
+             alt="Nghiem Luu — World Vacation Club Advisor" />
+      </div>
+      <div class="advisor-photo-badge">
+        <span data-en>Licensed<br>Sales Executive</span>
+        <span data-vi>Giám Đốc<br>Kinh Doanh</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Bio & credentials -->
+    <div class="advisor-info">
+
+      <div class="advisor-eyebrow">
+        <span data-en>Your Personal Advisor</span>
+        <span data-vi>Cố Vấn Cá Nhân Của Bạn</span>
+      </div>
+
+      <h2 class="advisor-name">
+        <span data-en>Nghiem Luu —<br><em>Your Trusted Guide</em></span>
+        <span data-vi>Nghiem Luu —<br><em>Người Bạn Tin Tưởng</em></span>
+      </h2>
+
+      <div class="advisor-title">
+        <span data-en>Licensed Sales Executive · World Vacation Club</span>
+        <span data-vi>Giám Đốc Kinh Doanh · World Vacation Club</span>
+      </div>
+
+      <p class="advisor-bio">
+        <span data-en>As a Vietnamese-American professional with deep roots in both the US and Vietnam markets, I bring a rare combination of cultural fluency, luxury travel expertise, and personal integrity to every client relationship. I don't just sell vacation ownership — I help families create legacies that last generations. Every consultation is conducted in your language, at your pace, with full transparency.</span>
+        <span data-vi>Là một chuyên gia người Mỹ gốc Việt với nền tảng sâu rộng tại cả thị trường Mỹ và Việt Nam, tôi mang đến sự kết hợp hiếm có giữa thấu hiểu văn hóa, chuyên môn du lịch cao cấp và sự chính trực trong từng mối quan hệ khách hàng. Tôi không chỉ bán quyền sở hữu kỳ nghỉ — tôi giúp các gia đình tạo dựng di sản trường tồn qua các thế hệ.</span>
+      </p>
+
+      <div class="advisor-credentials">
+
+        <div class="advisor-cred">
+          <span class="advisor-cred-icon">🌏</span>
+          <div class="advisor-cred-text">
+            <strong><span data-en>Bicultural Expertise</span><span data-vi>Chuyên Gia Hai Nền Văn Hóa</span></strong>
+            <span data-en>Fluent in English & Vietnamese. Deep networks across HCMC, Hanoi, and the US Vietnamese community.</span>
+            <span data-vi>Thành thạo tiếng Anh & tiếng Việt. Mạng lưới rộng tại TP.HCM, Hà Nội và cộng đồng người Việt tại Mỹ.</span>
+          </div>
+        </div>
+
+        <div class="advisor-cred">
+          <span class="advisor-cred-icon">🏆</span>
+          <div class="advisor-cred-text">
+            <strong><span data-en>Luxury Travel Specialist</span><span data-vi>Chuyên Gia Du Lịch Cao Cấp</span></strong>
+            <span data-en>Licensed Sales Executive specializing in luxury villa ownership and premium resort portfolios worldwide.</span>
+            <span data-vi>Giám đốc Kinh doanh được cấp phép, chuyên về sở hữu biệt thự cao cấp và danh mục khu nghỉ dưỡng toàn cầu.</span>
+          </div>
+        </div>
+
+        <div class="advisor-cred">
+          <span class="advisor-cred-icon">🤝</span>
+          <div class="advisor-cred-text">
+            <strong><span data-en>No-Pressure Promise</span><span data-vi>Cam Kết Không Áp Lực</span></strong>
+            <span data-en>Every consultation is informational, confidential, and conducted entirely on your terms — in Vietnamese or English.</span>
+            <span data-vi>Mọi buổi tư vấn đều mang tính thông tin, bảo mật và hoàn toàn theo điều kiện của bạn — bằng tiếng Việt hoặc tiếng Anh.</span>
+          </div>
+        </div>
+
+        <div class="advisor-cred">
+          <span class="advisor-cred-icon">📞</span>
+          <div class="advisor-cred-text">
+            <strong><span data-en>Direct Access</span><span data-vi>Liên Hệ Trực Tiếp</span></strong>
+            <span data-en>Reach me directly via WhatsApp, Zalo, phone, or email. No gatekeepers. No call centers. Just me.</span>
+            <span data-vi>Liên hệ trực tiếp với tôi qua WhatsApp, Zalo, điện thoại hoặc email. Không qua trung gian. Chỉ là tôi.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="advisor-actions">
+        <a href="#lead-form" class="btn-primary">
+          <span data-en>Book a Consultation</span>
+          <span data-vi>Đặt Lịch Tư Vấn</span>
+        </a>
+        <a href="https://wa.me/12133996868?text=Hello%20Nghiem%2C%20I%20would%20like%20to%20learn%20more%20about%20World%20Vacation%20Club."
+           class="btn-ghost" target="_blank" rel="noopener">
+          <span data-en>WhatsApp Me</span>
+          <span data-vi>Nhắn Tin WhatsApp</span>
+        </a>
+      </div>
+
+    </div>
   </div>
 </section>
 
