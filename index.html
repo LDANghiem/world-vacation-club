@@ -382,14 +382,14 @@
 
     .dest-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(4, 220px);
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 260px);
       gap: 8px;
     }
     .dest-card { position: relative; overflow: hidden; cursor: pointer; }
-    /* First card spans 2 rows for visual anchor */
-    .dest-card:first-child { grid-column: 1 / 2; grid-row: 1 / 3; }
-    .dest-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+    /* First card spans 2 columns and 2 rows for visual anchor */
+    .dest-card:first-child { grid-column: 1 / 3; grid-row: 1 / 3; }
+    .dest-img { width: 100%; height: 100%; object-fit: cover; object-position: center center; transition: transform 0.7s ease; }
     .dest-card:hover .dest-img { transform: scale(1.06); }
     .dest-overlay {
       position: absolute;
@@ -913,8 +913,8 @@
       .benefits-grid     { grid-template-columns: 1fr; }
       .destinations      { padding: 72px 24px; }
       .dest-grid         { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
-      .dest-card:first-child { grid-row: auto; grid-column: 1 / -1; height: 220px; }
-      .dest-card         { height: 160px; }
+      .dest-card:first-child { grid-row: auto; grid-column: 1 / -1; height: 240px; }
+      .dest-card         { height: 180px; }
       .press-bar         { padding: 20px 24px; }
       .press-label       { display: none; }
       .press-logos       { gap: 20px; }
@@ -1187,7 +1187,7 @@
 
   <div class="dest-grid">
 
-    <!-- Card 1: Las Vegas — spans 2 rows -->
+    <!-- ANCHOR: Las Vegas — spans 2 cols x 2 rows -->
     <div class="dest-card">
       <img class="dest-img" src="las-vegas.jpg" alt="Las Vegas" loading="lazy" />
       <div class="dest-overlay">
@@ -1196,7 +1196,6 @@
       </div>
     </div>
 
-    <!-- Maldives 2 -->
     <div class="dest-card">
       <img class="dest-img" src="maldives.jpg" alt="Maldives" loading="lazy" />
       <div class="dest-overlay">
@@ -1205,36 +1204,30 @@
       </div>
     </div>
 
-    <!-- Los Angeles — Walt Disney Concert Hall -->
     <div class="dest-card">
-      <img class="dest-img" src="los-angeles.jpg" alt="Los Angeles Walt Disney Concert Hall" loading="lazy" />
+      <img class="dest-img" src="los-angeles.jpg" alt="Los Angeles" loading="lazy" style="object-position:center 40%;" />
       <div class="dest-overlay">
         <div class="dest-name">Los Angeles</div>
         <div class="dest-country"><span data-en>California, USA</span><span data-vi>California, Hoa Kỳ</span></div>
       </div>
     </div>
 
-    <!-- Singapore — Marina Bay Sands -->
     <div class="dest-card">
-      <img class="dest-img" src="singapore.jpg" alt="Singapore Marina Bay" loading="lazy" />
+      <img class="dest-img" src="singapore.jpg" alt="Singapore" loading="lazy" />
       <div class="dest-overlay">
         <div class="dest-name">Singapore</div>
         <div class="dest-country"><span data-en>Southeast Asia</span><span data-vi>Đông Nam Á</span></div>
       </div>
     </div>
 
-    <!-- Vienna — Belvedere Palace (local file) -->
     <div class="dest-card">
-      <img class="dest-img"
-           src="vienna.jpg"
-           alt="Vienna Belvedere Palace" loading="lazy" />
+      <img class="dest-img" src="vienna.jpg" alt="Vienna" loading="lazy" />
       <div class="dest-overlay">
         <div class="dest-name">Vienna</div>
         <div class="dest-country"><span data-en>Austria</span><span data-vi>Áo</span></div>
       </div>
     </div>
 
-    <!-- Switzerland -->
     <div class="dest-card">
       <img class="dest-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Switzerland" loading="lazy" />
       <div class="dest-overlay">
@@ -1243,7 +1236,6 @@
       </div>
     </div>
 
-    <!-- Prague -->
     <div class="dest-card">
       <img class="dest-img" src="https://images.unsplash.com/photo-1541849546-216549ae216d?w=600&q=80" alt="Prague" loading="lazy" />
       <div class="dest-overlay">
@@ -1252,16 +1244,14 @@
       </div>
     </div>
 
-    <!-- Mount Fuji — replaces Tokyo -->
     <div class="dest-card">
-      <img class="dest-img" src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=600&q=80" alt="Mount Fuji Japan" loading="lazy" />
+      <img class="dest-img" src="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=600&q=80" alt="Mount Fuji" loading="lazy" style="object-position:center 60%;" />
       <div class="dest-overlay">
         <div class="dest-name"><span data-en>Mount Fuji</span><span data-vi>Núi Phú Sĩ</span></div>
         <div class="dest-country"><span data-en>Japan</span><span data-vi>Nhật Bản</span></div>
       </div>
     </div>
 
-    <!-- Paris -->
     <div class="dest-card">
       <img class="dest-img" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=80" alt="Paris" loading="lazy" />
       <div class="dest-overlay">
@@ -1270,20 +1260,24 @@
       </div>
     </div>
 
-    <!-- Vail Ski Resort — new -->
     <div class="dest-card">
-    <!-- New York — Central Park aerial skyline -->
-    <div class="dest-card">
-      <img class="dest-img" src="new-york.jpg" alt="New York City Skyline" loading="lazy" />
+      <img class="dest-img" src="new-york.jpg" alt="New York" loading="lazy" style="object-position:center 30%;" />
       <div class="dest-overlay">
         <div class="dest-name">New York</div>
         <div class="dest-country"><span data-en>USA</span><span data-vi>Hoa Kỳ</span></div>
       </div>
     </div>
 
-    <!-- Palm Desert Golf — new -->
     <div class="dest-card">
-      <img class="dest-img" src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&q=80" alt="Palm Desert Golf" loading="lazy" />
+      <img class="dest-img" src="washington-dc.jpg" alt="Washington D.C." loading="lazy" style="object-position:center 40%;" />
+      <div class="dest-overlay">
+        <div class="dest-name">Washington D.C.</div>
+        <div class="dest-country"><span data-en>USA</span><span data-vi>Hoa Kỳ</span></div>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <img class="dest-img" src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=600&q=80" alt="Palm Desert" loading="lazy" />
       <div class="dest-overlay">
         <div class="dest-name">Palm Desert</div>
         <div class="dest-country"><span data-en>California, USA</span><span data-vi>California, Hoa Kỳ</span></div>
